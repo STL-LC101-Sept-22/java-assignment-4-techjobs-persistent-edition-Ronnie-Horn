@@ -10,16 +10,17 @@ public class Employer extends AbstractEntity {
     @NotBlank
     @NotNull
     private String location;
-}
 
-//public class Person {
-//    private String name;
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//}
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return location;
+    }
+}
