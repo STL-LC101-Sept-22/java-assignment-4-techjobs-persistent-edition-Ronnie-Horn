@@ -18,17 +18,17 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
-    @GetMapping
+    @GetMapping("index")
     public String DisplayAllEmployers(Model model) {
-        model.addAttribute("name", "location");
-        model.addAttribute("employers",employerRepository.findAll());
-        return "employers/index";
+        model.addAttribute("employer", "employer");
+        model.addAttribute("employer",employerRepository.findAll());
+        return "employers";
     }
 
 
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
-        model.addAttribute("name", "location");
+        model.addAttribute("employer", "employer");
         model.addAttribute(new Employer());
         return "employers/add";
     }
@@ -38,7 +38,7 @@ public class EmployerController {
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("employers", "employer");
+            model.addAttribute("employer", "employer");
             return "employers/add";
         }
         employerRepository.save(newEmployer);
