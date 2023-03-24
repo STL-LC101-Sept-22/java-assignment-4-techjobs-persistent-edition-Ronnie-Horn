@@ -1,9 +1,18 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Employer extends AbstractEntity {
     @Size(max = 75, message = "Location name should not be longer than 75 characters")
@@ -16,6 +25,7 @@ public class Employer extends AbstractEntity {
     }
     public Employer() {}
 
+
     public String getLocation() {
         return location;
     }
@@ -23,4 +33,24 @@ public class Employer extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @OneToMany
+    @JoinColumn(name = "employer_id")
+    private List<Job> jobs = new ArrayList<>();
+    public Employer(List<Job> jobs) {
+        this.jobs = jobs;
+
+    }
+
 }
+
+//    public void testJobsHasCorrectPersistenceAnnotations() throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//        Class employerClass = getClassByName("models.Employer");
+//        Field jobsField = employerClass.getDeclaredField("jobs");
+//
+//        assertNotNull(jobsField.getAnnotation(OneToMany.class));
+//        Annotation joinColAnnotation = jobsField.getAnnotation(JoinColumn.class);
+//        Method nameMethod = joinColAnnotation.getClass().getMethod("name");
+//        assertEquals("employer_id", nameMethod.invoke(joinColAnnotation));
+
+
