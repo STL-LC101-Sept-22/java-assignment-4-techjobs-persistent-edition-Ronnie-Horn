@@ -55,6 +55,8 @@ public class ListController {
         if (column.toLowerCase().equals("all")){
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
+            model.addAttribute("title", "All Employers");
+            model.addAttribute("title", "All Skills");
 
         } else {
             jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
@@ -62,8 +64,8 @@ public class ListController {
         }
 
         model.addAttribute("jobs", jobs);
-        model.addAttribute("employers","employer");
-        model.addAttribute("skills","Skill");
+        model.addAttribute("employers");
+        model.addAttribute("skills");
 
         return "list-jobs";
     }

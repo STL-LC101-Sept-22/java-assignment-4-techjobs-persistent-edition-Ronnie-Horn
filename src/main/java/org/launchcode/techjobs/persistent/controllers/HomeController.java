@@ -57,7 +57,8 @@ public class HomeController {
         }
         model.addAttribute("employer", employerId);
              List<Skill> skillObjs = (List<Skill>)skillRepository.findAllById(skills);
-//                newJob.setSkills(skillObjs);
+
+                newJob.setSkills(skillObjs);
                 if (skillObjs.contains(skillObjs)) {
                     model.addAttribute("skills", skills);
                     model.addAttribute("skills", skillObjs);
