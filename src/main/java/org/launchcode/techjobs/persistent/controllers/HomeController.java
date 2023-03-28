@@ -53,18 +53,21 @@ public class HomeController {
                                        Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
         if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Job");
             return "add";
         }
-        // add  the newjob and the employer id stuff here
-             List<Skill> skillObjs = (List<Skill>)(skillRepository.findAllById(skills));
-            if (skillObjs.contains(skillObjs)) {
-                model.addAttribute("skill", skills);
-                model.addAttribute(skillRepository.findAllById(skills));
-        }
-//add a save method here.
-        return "redirect:";
-    }
+        model.addAttribute("employer", employerId);
+             List<Skill> skillObjs = (List<Skill>)skillRepository.findAllById(skills);
+//                newJob.setSkills(skillObjs);
+                if (skillObjs.contains(skillObjs)) {
+                    model.addAttribute("skills", skills);
+                    model.addAttribute("skills", skillObjs);
+                    model.addAttribute(skillRepository.findAllById(skills));
+                }
+
+                jobRepository.save(newJob);
+                return "redirect:";
+            };
+
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {

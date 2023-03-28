@@ -44,13 +44,5 @@ public class Employer extends AbstractEntity {
 
 }
 
-//    public void testJobsHasCorrectPersistenceAnnotations() throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-//        Class employerClass = getClassByName("models.Employer");
-//        Field jobsField = employerClass.getDeclaredField("jobs");
-//
-//        assertNotNull(jobsField.getAnnotation(OneToMany.class));
-//        Annotation joinColAnnotation = jobsField.getAnnotation(JoinColumn.class);
-//        Method nameMethod = joinColAnnotation.getClass().getMethod("name");
-//        assertEquals("employer_id", nameMethod.invoke(joinColAnnotation));
 
 
